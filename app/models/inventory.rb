@@ -2,5 +2,5 @@ class Inventory < ApplicationRecord
     belongs_to :users
     belongs_to :products
 
-    #trest
+    #test 4
 end
