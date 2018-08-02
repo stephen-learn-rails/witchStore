@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   has_many :inventories  
 
+#test
+
 #creates getters and setters, even if not in database (virtual attribute)
   #attr_accessor :first_name, :last_name, :email
 
