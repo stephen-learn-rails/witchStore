@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   # GET /products/1
   # GET /products/1.json
   def show
-    @product = set_product
+      @product = set_product
   end
 
   # GET /products/new
@@ -81,14 +81,17 @@ class ProductsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_product
-       return Product.find(params[:id])
-      #flash.now[:alert] =
-      #redirect_to
+      #find_by_id - this doesn't raise an exception. 
+      begin
+        return Product.find(params[:id])
+      rescue ActiveRecord::RecordNotFound
+        flash[:alert] = "Could not find product"
+        redirect_to action: "index"
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list throug#h.
     def product_params
       params.require(:product).permit(:name, :price, :description, :featured)
-      
     end
 end
